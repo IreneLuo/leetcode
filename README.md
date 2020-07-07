@@ -1,2 +1,2 @@
 # leetcode
-Record of my answers for LeetCode
+Records of my answers for LeetCode
