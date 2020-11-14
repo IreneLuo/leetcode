@@ -1,9 +1,9 @@
 class Solution {
 public:
     /* solution: dynamic programming
-     *
+     *   <Levenshtein Distance>
      *   if s[i]!=s[j], arr(i, j) = min(1+d, 1+I, 1+R)    _Replace_|__Delete__
-     *   else arr(i, j) = 0 + R(the case except i,j)
+     *   else arr(i, j) = 0 + R(the case except i,j)     ----------|-----------
      *    s2 " " r  o  s                                  _Insert__|__CurrPos_
      *    s1|------------
      *   " "| 0  1  2  3 --> [1]

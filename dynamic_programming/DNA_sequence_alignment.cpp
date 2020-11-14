@@ -56,7 +56,7 @@ class Solution {
      *                  mismatch j cost = GAP_COST + opt(i-1, j),
      *                    )
      * ex: s1 = "ACG", s2 = "AACG"
-     *   history tbl =  s2  " " A  A  C  G      1. tbl[0][0-4]/tbl[0-3][0] = GPT_COST * col because when s1 = " ",
+     *   history tbl =  s2  " " A  A  C  G      1. tbl[0][0-4]/tbl[0-3][0] = GAP_COST * col because when s1 = " ",
      *                  s1  --------------      we can only put the gaps in s1
      *                 " " | 0  1  2  3  4      2. ex: tbl[1][1] = min(0,2,2)=0
      *                  A  | 1  0  1  2  3           - align = "AA"--> 0 + tbl[0][0] = 0
@@ -66,12 +66,13 @@ class Solution {
      *                                                 --> if s2=GAP s1=A, so the rest of s1 = "", s2=A = tbl[0][1]
      *
      *   How can we trace back to know the exact possible DNA sequence?
-     *   s2  " " A  A  C  G 
-     *   s1  --------------
-     *   " " | [0]  1  2  3  4  --> (5)
-     *    A  | 1 [0] [1]  2  3  --> (3,4)
-     *    C  | 2  1  1 [1]  2  --> (2)
-     *    G  | 3  2  2  2 [1]  --> (1) if we take the alignment penalty, the align cost = 0("GG") + tbl[i-1][j-1] = 1
+     *   s2    " "  A   A   C   G 
+     *   s1  -----------------------
+     *   " " | [0]  1   2   3   4  --> (5)
+     *    A  | 1   [0] [1]  2   3  --> (3,4)
+     *    C  | 2    1   1  [1]  2  --> (2)
+     *    G  | 3    2   2   2  [1]
+     *    *                     |->(1) if we take the alignment penalty, the align cost = 0("GG") + tbl[i-1][j-1] = 1
      *                                 if we mismatch s1, add a gap in s2, the cost = 1(GAP) + tbl[i-1][j] = 3
      *                                 if we mismatch s2, add a gap in s1, the cost = 1(GAP) + tbl[i][j-1] = 3
      *                                 ==> 1 is the min so we go to tbl[i-1][j-1]

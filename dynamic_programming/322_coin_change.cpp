@@ -6,6 +6,14 @@ public:
      * time complexity = O(A*C)
      * space complexity = O(A)
      * 
+     * method 1
+     *  amount: 0   1  2 .... i
+     *  ans   :               x
+     *  if choose coin 1: 1 + dp[i-1] //amountleft = i-1
+     *  if choose coin 2: 1 + dp[i-2] //amountleft = i-2
+     *  if choose coin 5: 1 + dp[i-5] //amountleft = i-5
+     *  x = max(1 + dp[i-1], 1 + dp[i-2], 1 + dp[i-5])
+     *
      * note that for top-down method
      * see "back to back swe"
      */

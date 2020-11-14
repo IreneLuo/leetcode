@@ -20,13 +20,32 @@ public:
      *     but how can get the minimum subarray sum? We can negate the elements and use the method we mention in A.
      *  3. [-2,-3,-1] all negative values in A
      *     maximum subarray sum = -1
+     *
      *  So for this 3 cases, we use three variables to collect the sum that we need
-     *    - maxSumAtLast
-     *    - maxSumSoFar/minSumSoFar
-     *    - total
+     *    - maxSumAtLast: the max value of maxSumSoFar
+     *    - maxSumSoFar: the max sum to A[i] so far : max (maxSumSoFar + A[i], A[i])
+     *    - minSumSoFar: the min sum to A[i] so far 
+     *    - total: the sum to A[i]
+     *
      *  And in our return statement, we can return a correct answer for these three cases
      *    - (total == minSumAtLast) ? maxSumAtLast: max(total - minSumAtLast, maxSumAtLast);
      *                                (case 3)            (case 2)              (case 1)
+     *
+     *
+     *  Ex: [1, -2, 3, -2]     step  maxSumAtLast   maxSumSoFar   total
+     *       ^   ^  ^   ^      init       1             0           0
+     *       a   b  c   d        a        1             1           1
+     *             |             b        1(1>-1)     1+-2=-1     1+-2=-1
+     *             |             c        3             3         -1+3=2
+     *             v             d        3           3+-2=-1     2+-2=0
+     *      [-1, 2, -3, 2]     step  minSumAtLast   minSumSoFar
+     *       ^   ^  ^   ^      init        -1           0
+     *       e   f  g   h        e         -1           -1
+     *                           f          2           2
+     *                           g          2           -1
+     *                           h          2            2
+     *                                      |------------------> minSumAtLast = -2
+     *   return max(total - minSumAtLast, maxSumAtLast) = max(0 - (-2), 3) = 3
      */
     int maxSubarraySumCircular(vector<int>& A) {
         if(A.size() <= 1)

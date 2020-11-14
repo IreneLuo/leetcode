@@ -1,6 +1,12 @@
 class Solution {
 public:
     /* solution 1: 
+     * Main thought:
+     * use prices[i] - min price to get a higher profit
+     * but how to find the min price?
+     * if prices[i] < min price, then update min price = prices[i]
+     * 
+     * Implementation:
      * we iterate the input, and everytime we check:
      *  1. the difference between current item with min and remains the maximum difference (i.e max profit)
      *  2. if current item < min, replace the min
