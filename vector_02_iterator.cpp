@@ -18,6 +18,8 @@ int main(void) {
 	for (vector<int>::reverse_iterator rit = myvector.rbegin(); rit != myvector.rend(); ++rit)
 		cout << *rit << ", ";
 	cout <<endl;
+	for (auto rit = myvector.rbegin(); rit != myvector.rend(); ++rit)
+		cout << *rit << ", ";
 
 	return 0;
 }
